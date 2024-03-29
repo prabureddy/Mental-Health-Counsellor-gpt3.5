@@ -3,7 +3,7 @@
 import { OpenAI } from "openai";
 
 const openai = new OpenAI(
-  { organization: 'org-EYj0pavhRG82Sw5VjhfQ4ga0', apiKey: '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' }
+  { organization: 'org-EYj0pavhRG82Sw5VjhfQ4ga0', apiKey: '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' }
 );
 
 function getCounselling(prompt) {
