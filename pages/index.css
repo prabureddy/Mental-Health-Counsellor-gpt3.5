@@ -1,0 +1,34 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.textbox-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 1000px;
+}
+
+.textbox-container textarea {
+  width: 100%;
+}
+
+.selector-container {
+  display: flex;
+  gap: 20px;
+}
+
+.progress-bars-container {
+  padding: 8px;
+  height: 140px;
+}
+
+.container {
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
