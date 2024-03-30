@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Textarea, Button } from "@nextui-org/react";
+import Table from "@/components/Table";
 
 function App() {
   const [disabled, setDisabled] = useState(false);
@@ -9,6 +10,7 @@ function App() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [counselledData, setCounselledData] = useState([]);
 
   const getCounselling = async () => {
     if (!input) return;
@@ -17,9 +19,20 @@ function App() {
     const response = await axios.post("/api/get-counselling", {
       prompt: input,
     });
-    setOutput(response.data?.result);
+    const result = response.data?.result;
+    if (result) {
+      setOutput(result);
+      setCounselledData((e) => [
+        ...e,
+        { query: input, result, id: counselledData.length + 1 },
+      ]);
+    }
     setDisabled(false);
     setLoading(false);
+  };
+
+  const deleteQuery = (id) => {
+    setCounselledData((e) => [...e.filter((q) => q.id !== id)]);
   };
 
   return (
@@ -72,6 +85,13 @@ function App() {
             <>We are on the way to help you...</>
           )}
         </Button>
+      </div>
+      <div className="textbox-container mt-10">
+        <Table
+          column={["Query", "Result", "Actions"]}
+          data={counselledData}
+          deleteQuery={deleteQuery}
+        />
       </div>
     </>
   );
