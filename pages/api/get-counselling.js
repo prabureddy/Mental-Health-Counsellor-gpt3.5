@@ -26,6 +26,6 @@ export default async function handler(req, res) {
     const result = await getCounselling(prompt);
     res.status(200).json({ result });
   } else {
-    res.status(405).json({ error: 'Method Not Allowed' });
+    res.status(405).json({ error: `${req.method} = Method Not Allowed` });
   }
 }
