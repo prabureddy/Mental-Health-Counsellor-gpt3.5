@@ -15,7 +15,6 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   justify-content: center;
   min-height: 100vh;
@@ -74,6 +73,15 @@ textarea:focus-visible,
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  margin-top: 100px;
 }
 
 @tailwind base;
