@@ -19,7 +19,15 @@ function GPT3_5_Turbo() {
     const response = await axios.post("/api/ml-model", {
       prompt: input,
     });
-    const result = response.data?.result[0].generated_text;
+    if (response.data?.result.error) {
+      setDisabled(false);
+      setLoading(false);
+      alert(
+        `${response.data?.result.error}, maybe need to add credits to api.`
+      );
+      return;
+    }
+    const result = response.data?.result[0]?.generated_text;
     if (result) {
       setOutput(result);
       setCounselledData((e) => [
