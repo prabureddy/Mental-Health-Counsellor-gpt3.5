@@ -17,8 +17,11 @@ export default async function handler(req, res) {
     const { body } = req;
     const { prompt } = body;
     const result = await query({
-      inputs: `${prompt}`,
-      parameters: {},
+      inputs: `<s>[INST] <<SYS>>
+      You are a mental health assistant named Alex. Using the context given below, provide a suitable response to the human user in a kind and gentle tone.
+      <</SYS>>
+      ${prompt} [/INST]`,
+      parameters: { return_full_text: false },
     });
     res.status(200).json({ result });
   } else {
