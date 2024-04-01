@@ -1,20 +1,15 @@
-const controller = new AbortController();
-
-const timeoutId = setTimeout(() => controller.abort(), 30000);
+import axios from "axios";
 
 const query = async (data) => {
-  const response = await fetch(process.env.HF_URL, {
+  const response = await axios.post(process.env.HF_URL, JSON.stringify(data), {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${process.env.HF_KEY}`,
       "Content-Type": "application/json",
     },
-    method: "POST",
-    body: JSON.stringify(data),
-    signal: controller.signal,
+    timeout: 30000,
   });
-  clearTimeout(timeoutId);
-  const result = await response.json();
+  const result = response.data;
   return result;
 };
 
