@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       You are a mental health assistant named Alex. Using the context given below, provide a suitable response to the human user in a kind and gentle tone.
       <</SYS>>
       ${prompt} [/INST]`,
-      parameters: { return_full_text: false },
+      parameters: { return_full_text: false, max_new_tokens: 500 },
     });
     res.status(200).json({ result });
   } else {

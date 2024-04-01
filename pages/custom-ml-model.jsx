@@ -3,6 +3,7 @@ import axios from "axios";
 import { Textarea, Button } from "@nextui-org/react";
 import Table from "@/components/Table";
 import Link from "next/link";
+import DisplayResult from "@/components/DisplayResult";
 
 function GPT3_5_Turbo() {
   const [disabled, setDisabled] = useState(false);
@@ -72,7 +73,7 @@ function GPT3_5_Turbo() {
               input: "resize-y min-h-[40px]",
             }}
           />
-          <Textarea
+          <DisplayResult
             label="Here's what I can say you"
             value={output}
             rows={10}
