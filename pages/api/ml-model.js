@@ -1,3 +1,7 @@
+const controller = new AbortController();
+
+const timeoutId = setTimeout(() => controller.abort(), 30000);
+
 const query = async (data) => {
   const response = await fetch(process.env.HF_URL, {
     headers: {
@@ -7,7 +11,9 @@ const query = async (data) => {
     },
     method: "POST",
     body: JSON.stringify(data),
+    signal: controller.signal,
   });
+  clearTimeout(timeoutId);
   const result = await response.json();
   return result;
 };
