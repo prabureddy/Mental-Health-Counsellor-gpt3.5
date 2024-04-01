@@ -16,9 +16,13 @@ function GPT3_5_Turbo() {
     if (!input) return;
     setDisabled(true);
     setLoading(true);
-    const response = await axios.post("/api/get-counselling", {
-      prompt: input,
-    });
+    const response = await axios.post(
+      "/api/get-counselling",
+      {
+        prompt: input,
+      },
+      { timeout: 30000 }
+    );
     const result = response.data?.result;
     if (result) {
       setOutput(result);

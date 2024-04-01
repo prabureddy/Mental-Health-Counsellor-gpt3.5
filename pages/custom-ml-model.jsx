@@ -17,9 +17,13 @@ function GPT3_5_Turbo() {
     if (!input) return;
     setDisabled(true);
     setLoading(true);
-    const response = await axios.post("/api/ml-model", {
-      prompt: input,
-    });
+    const response = await axios.post(
+      "/api/ml-model",
+      {
+        prompt: input,
+      },
+      { timeout: 30000 }
+    );
     if (response.data?.result.error) {
       setDisabled(false);
       setLoading(false);
